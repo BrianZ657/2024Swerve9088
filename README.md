@@ -1,2 +1,4 @@
 # 2024Swerve9088
-Check why contoller map is incorrect. 
+ contoller map is incorrect because RobotContainer is ysing xbox not PS4???
+
+field oriented swerve can be added by getting gyro yaw and using that to transform left stick imput.
