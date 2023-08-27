@@ -2,6 +2,11 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
+//README:
+//THIS IS A RENAMED COPY OF DriveSubsystem.java
+
+
+
 package frc.robot.subsystems;
 
 import edu.wpi.first.math.filter.SlewRateLimiter;
@@ -18,7 +23,7 @@ import frc.robot.Constants.DriveConstants;
 import frc.utils.SwerveUtils;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class DriveSubsystem extends SubsystemBase {
+public class GyroSubsystemisCopyofDriveSubsystem extends SubsystemBase {
   // Create MAXSwerveModules
   private final MAXSwerveModule m_frontLeft = new MAXSwerveModule(
       DriveConstants.kFrontLeftDrivingCanId,
@@ -64,7 +69,7 @@ public class DriveSubsystem extends SubsystemBase {
       });
 
   /** Creates a new DriveSubsystem. */
-  public DriveSubsystem() {
+  public GyroSubsystemisCopyofDriveSubsystem() {
   }
 
   @Override
