@@ -48,6 +48,9 @@ public class DriveSubsystem extends SubsystemBase {
   //private final ADIS16470_IMU m_gyro = new ADIS16470_IMU();
 =======
   private final ADIS16470_IMU m_gyro = new ADIS16470_IMU();
+<<<<<<< HEAD
+>>>>>>> parent of 7673286 (field centric)
+=======
 >>>>>>> parent of 7673286 (field centric)
   private final AHRS ahrsGyro = new AHRS(SerialPort.Port.kUSB);
 
@@ -64,7 +67,11 @@ public class DriveSubsystem extends SubsystemBase {
   SwerveDriveOdometry m_odometry = new SwerveDriveOdometry(
       DriveConstants.kDriveKinematics,
 <<<<<<< HEAD
+<<<<<<< HEAD
       Rotation2d.fromDegrees(ahrsGyro.getAngle()),
+=======
+      Rotation2d.fromDegrees(m_gyro.getAngle()),
+>>>>>>> parent of 7673286 (field centric)
 =======
       Rotation2d.fromDegrees(m_gyro.getAngle()),
 >>>>>>> parent of 7673286 (field centric)
@@ -84,7 +91,11 @@ public class DriveSubsystem extends SubsystemBase {
     // Update the odometry in the periodic block
     m_odometry.update(
 <<<<<<< HEAD
+<<<<<<< HEAD
         Rotation2d.fromDegrees(ahrsGyro.getAngle()),
+=======
+        Rotation2d.fromDegrees(m_gyro.getAngle()),
+>>>>>>> parent of 7673286 (field centric)
 =======
         Rotation2d.fromDegrees(m_gyro.getAngle()),
 >>>>>>> parent of 7673286 (field centric)
@@ -113,7 +124,11 @@ public class DriveSubsystem extends SubsystemBase {
   public void resetOdometry(Pose2d pose) {
     m_odometry.resetPosition(
 <<<<<<< HEAD
+<<<<<<< HEAD
         Rotation2d.fromDegrees(ahrsGyro.getAngle()),
+=======
+        Rotation2d.fromDegrees(m_gyro.getAngle()),
+>>>>>>> parent of 7673286 (field centric)
 =======
         Rotation2d.fromDegrees(m_gyro.getAngle()),
 >>>>>>> parent of 7673286 (field centric)
@@ -250,7 +265,11 @@ public class DriveSubsystem extends SubsystemBase {
    */
   public double getHeading() {
 <<<<<<< HEAD
+<<<<<<< HEAD
     return Rotation2d.fromDegrees(ahrsGyro.getAngle()).getDegrees();
+=======
+    return Rotation2d.fromDegrees(m_gyro.getAngle()).getDegrees();
+>>>>>>> parent of 7673286 (field centric)
 =======
     return Rotation2d.fromDegrees(m_gyro.getAngle()).getDegrees();
 >>>>>>> parent of 7673286 (field centric)
