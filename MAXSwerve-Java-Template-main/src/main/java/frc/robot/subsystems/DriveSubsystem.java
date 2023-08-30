@@ -49,6 +49,9 @@ public class DriveSubsystem extends SubsystemBase {
 =======
   private final ADIS16470_IMU m_gyro = new ADIS16470_IMU();
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 7673286 (field centric)
+=======
 >>>>>>> parent of 7673286 (field centric)
 =======
 >>>>>>> parent of 7673286 (field centric)
@@ -68,7 +71,11 @@ public class DriveSubsystem extends SubsystemBase {
       DriveConstants.kDriveKinematics,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       Rotation2d.fromDegrees(ahrsGyro.getAngle()),
+=======
+      Rotation2d.fromDegrees(m_gyro.getAngle()),
+>>>>>>> parent of 7673286 (field centric)
 =======
       Rotation2d.fromDegrees(m_gyro.getAngle()),
 >>>>>>> parent of 7673286 (field centric)
@@ -92,7 +99,11 @@ public class DriveSubsystem extends SubsystemBase {
     m_odometry.update(
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         Rotation2d.fromDegrees(ahrsGyro.getAngle()),
+=======
+        Rotation2d.fromDegrees(m_gyro.getAngle()),
+>>>>>>> parent of 7673286 (field centric)
 =======
         Rotation2d.fromDegrees(m_gyro.getAngle()),
 >>>>>>> parent of 7673286 (field centric)
@@ -125,7 +136,11 @@ public class DriveSubsystem extends SubsystemBase {
     m_odometry.resetPosition(
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         Rotation2d.fromDegrees(ahrsGyro.getAngle()),
+=======
+        Rotation2d.fromDegrees(m_gyro.getAngle()),
+>>>>>>> parent of 7673286 (field centric)
 =======
         Rotation2d.fromDegrees(m_gyro.getAngle()),
 >>>>>>> parent of 7673286 (field centric)
@@ -266,7 +281,11 @@ public class DriveSubsystem extends SubsystemBase {
   public double getHeading() {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     return Rotation2d.fromDegrees(ahrsGyro.getAngle()).getDegrees();
+=======
+    return Rotation2d.fromDegrees(m_gyro.getAngle()).getDegrees();
+>>>>>>> parent of 7673286 (field centric)
 =======
     return Rotation2d.fromDegrees(m_gyro.getAngle()).getDegrees();
 >>>>>>> parent of 7673286 (field centric)
