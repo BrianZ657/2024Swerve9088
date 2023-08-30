@@ -10,6 +10,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.math.util.Units;
+import frc.robot.subsystems.GyroSubsystem;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide
@@ -25,6 +26,10 @@ import edu.wpi.first.math.util.Units;
  */
 public final class Constants {
   public static final class DriveConstants {
+
+    // gryo
+    public static final GyroSubsystem gyro = new GyroSubsystem();
+
     // Driving Parameters - Note that these are not the maximum capable speeds of
     // the robot, rather the allowed maximum speeds
     public static final double kMaxSpeedMetersPerSecond = 4.8;
@@ -46,14 +51,14 @@ public final class Constants {
         new Translation2d(-kWheelBase / 2, -kTrackWidth / 2));
 
     // Angular offsets of the modules relative to the chassis in radians
-    public static final double kFrontLeftChassisAngularOffset = -Math.PI / 2;
-    public static final double kFrontRightChassisAngularOffset = -0;
-    public static final double kBackLeftChassisAngularOffset = -Math.PI;
-    public static final double kBackRightChassisAngularOffset = Math.PI / 2;
+    public static final double kFrontLeftChassisAngularOffset = -Math.PI / 2 - gyro.getYaw() * (180/Math.PI);
+    public static final double kFrontRightChassisAngularOffset = -gyro.getYaw() * (180/Math.PI);
+    public static final double kBackLeftChassisAngularOffset = -Math.PI - gyro.getYaw() * (180/Math.PI);
+    public static final double kBackRightChassisAngularOffset = Math.PI / 2 - gyro.getYaw() * (180/Math.PI);
 
     // SPARK MAX CAN IDs
     public static final int kFrontLeftDrivingCanId = 2;
-    public static final int kRearLeftDrivingCanId = 8;
+    public static final int kRearLeftDrivingCanId = 8;  
     public static final int kFrontRightDrivingCanId = 4;
     public static final int kRearRightDrivingCanId = 6;
 
