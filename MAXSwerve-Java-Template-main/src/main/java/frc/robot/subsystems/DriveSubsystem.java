@@ -43,8 +43,12 @@ public class DriveSubsystem extends SubsystemBase {
       DriveConstants.kBackRightChassisAngularOffset);
 
   // The gyro sensor
+<<<<<<< HEAD
   //AHRS is utilized in navx
   //private final ADIS16470_IMU m_gyro = new ADIS16470_IMU();
+=======
+  private final ADIS16470_IMU m_gyro = new ADIS16470_IMU();
+>>>>>>> parent of 7673286 (field centric)
   private final AHRS ahrsGyro = new AHRS(SerialPort.Port.kUSB);
 
   // Slew rate filter variables for controlling lateral acceleration
@@ -59,7 +63,11 @@ public class DriveSubsystem extends SubsystemBase {
   // Odometry class for tracking robot pose
   SwerveDriveOdometry m_odometry = new SwerveDriveOdometry(
       DriveConstants.kDriveKinematics,
+<<<<<<< HEAD
       Rotation2d.fromDegrees(ahrsGyro.getAngle()),
+=======
+      Rotation2d.fromDegrees(m_gyro.getAngle()),
+>>>>>>> parent of 7673286 (field centric)
       new SwerveModulePosition[] {
           m_frontLeft.getPosition(),
           m_frontRight.getPosition(),
@@ -75,7 +83,11 @@ public class DriveSubsystem extends SubsystemBase {
   public void periodic() {
     // Update the odometry in the periodic block
     m_odometry.update(
+<<<<<<< HEAD
         Rotation2d.fromDegrees(ahrsGyro.getAngle()),
+=======
+        Rotation2d.fromDegrees(m_gyro.getAngle()),
+>>>>>>> parent of 7673286 (field centric)
         new SwerveModulePosition[] {
             m_frontLeft.getPosition(),
             m_frontRight.getPosition(),
@@ -100,7 +112,11 @@ public class DriveSubsystem extends SubsystemBase {
    */
   public void resetOdometry(Pose2d pose) {
     m_odometry.resetPosition(
+<<<<<<< HEAD
         Rotation2d.fromDegrees(ahrsGyro.getAngle()),
+=======
+        Rotation2d.fromDegrees(m_gyro.getAngle()),
+>>>>>>> parent of 7673286 (field centric)
         new SwerveModulePosition[] {
             m_frontLeft.getPosition(),
             m_frontRight.getPosition(),
@@ -224,7 +240,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   /** Zeroes the heading of the robot. */
   public void zeroHeading() {
-    ahrsGyro.reset();
+    m_gyro.reset();
   }
 
   /**
@@ -233,7 +249,11 @@ public class DriveSubsystem extends SubsystemBase {
    * @return the robot's heading in degrees, from -180 to 180
    */
   public double getHeading() {
+<<<<<<< HEAD
     return Rotation2d.fromDegrees(ahrsGyro.getAngle()).getDegrees();
+=======
+    return Rotation2d.fromDegrees(m_gyro.getAngle()).getDegrees();
+>>>>>>> parent of 7673286 (field centric)
   }
 
   /**
@@ -242,6 +262,6 @@ public class DriveSubsystem extends SubsystemBase {
    * @return The turn rate of the robot, in degrees per second
    */
   public double getTurnRate() {
-    return ahrsGyro.getRate() * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
+    return m_gyro.getRate() * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
   }
 }
