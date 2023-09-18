@@ -28,7 +28,7 @@ public final class Constants {
   public static final class DriveConstants {
 
     // gryo
-    public static final GyroSubsystem gyro = new GyroSubsystem();
+    //public static final GyroSubsystem gyro = new GyroSubsystem();
 
     // Driving Parameters - Note that these are not the maximum capable speeds of
     // the robot, rather the allowed maximum speeds
@@ -51,10 +51,10 @@ public final class Constants {
         new Translation2d(-kWheelBase / 2, -kTrackWidth / 2));
 
     // Angular offsets of the modules relative to the chassis in radians
-    public static final double kFrontLeftChassisAngularOffset = -Math.PI / 2 - gyro.getYaw() * (180/Math.PI);
-    public static final double kFrontRightChassisAngularOffset = -gyro.getYaw() * (180/Math.PI);
-    public static final double kBackLeftChassisAngularOffset = -Math.PI - gyro.getYaw() * (180/Math.PI);
-    public static final double kBackRightChassisAngularOffset = Math.PI / 2 - gyro.getYaw() * (180/Math.PI);
+    public static final double kFrontLeftChassisAngularOffset = -Math.PI / 2; // - gyro.getYaw() * (180/Math.PI);
+    public static final double kFrontRightChassisAngularOffset =  0;//-gyro.getYaw() * (180/Math.PI);
+    public static final double kBackLeftChassisAngularOffset = -Math.PI;//- gyro.getYaw() * (180/Math.PI);
+    public static final double kBackRightChassisAngularOffset = Math.PI / 2;//- gyro.getYaw() * (180/Math.PI);
 
     // SPARK MAX CAN IDs
     public static final int kFrontLeftDrivingCanId = 2;

@@ -46,8 +46,8 @@ public class DriveSubsystem extends SubsystemBase {
       DriveConstants.kBackRightChassisAngularOffset);
 
   // The gyro sensor
-  private final ADIS16470_IMU m_gyro = new ADIS16470_IMU();
-  private final GyroSubsystem ahrsGyro = new GyroSubsystem();
+   //private final ADIS16470_IMU m_gyro = new ADIS16470_IMU();
+  private final GyroSubsystem ahrsGyro = GyroSubsystem.getInstance();
 
   // Slew rate filter variables for controlling lateral acceleration
   private double m_currentRotation = 0.0;
@@ -73,8 +73,7 @@ public class DriveSubsystem extends SubsystemBase {
   public DriveSubsystem() {
   }
 
-  @Override
-  public void periodic() {
+  public void updateOdometry() {
     // Update the odometry in the periodic block
     m_odometry.update(
         Rotation2d.fromDegrees(ahrsGyro.getYaw()),
@@ -84,7 +83,7 @@ public class DriveSubsystem extends SubsystemBase {
             m_rearLeft.getPosition(),
             m_rearRight.getPosition()
         });
-
+    System.out.println(ahrsGyro.getPitch()+"..."+ahrsGyro.getYaw()+"..."+ ahrsGyro.getRoll());
     SmartDashboard.putNumber("Gyro Pitch", ahrsGyro.getPitch());
     SmartDashboard.putNumber("Gyro Yaw", ahrsGyro.getYaw());
   }
@@ -129,6 +128,8 @@ public class DriveSubsystem extends SubsystemBase {
     
     double xSpeedCommanded;
     double ySpeedCommanded;
+
+    updateOdometry();
 
     if (rateLimit) {
       // Convert XY to polar for rate limiting

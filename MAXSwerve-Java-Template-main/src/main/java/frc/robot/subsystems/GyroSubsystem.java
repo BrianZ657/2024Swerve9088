@@ -4,14 +4,24 @@ import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 
 public class GyroSubsystem {
-    //private ADXRS450_Gyro gyro1 = new ADXRS450_Gyro();
+    //private ADXRS450_Gyro ahrsGyro = new ADXRS450_Gyro();
     final AHRS ahrsGyro = new AHRS(SerialPort.Port.kUSB);
     double simulatedYaw = 0;
+    static GyroSubsystem self = null;
 
-    public GyroSubsystem() {
+    private GyroSubsystem() {
         init();
+    }
+
+    public static GyroSubsystem getInstance() {
+        if (self==null) {
+            self = new GyroSubsystem();
+            return self;
+        } else
+            return self;
     }
 
     public void init() {
@@ -28,7 +38,7 @@ public class GyroSubsystem {
     }
     
     public double getYaw() {
-        return simulatedYaw!=0 ? simulatedYaw: ahrsGyro.getYaw();
+        return simulatedYaw!=0 ? simulatedYaw: -ahrsGyro.getYaw();
     }
 
     public double getRoll() {
