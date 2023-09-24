@@ -36,7 +36,7 @@ public class GyroSubsystem {
     public double getRate(){
       return ahrsGyro.getRate();
     }
-    
+
     public double getYaw() {
         return simulatedYaw!=0 ? simulatedYaw: -ahrsGyro.getYaw();
     }

@@ -13,13 +13,13 @@ import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.util.WPIUtilJNI;
-import edu.wpi.first.wpilibj.ADIS16470_IMU;
+//import edu.wpi.first.wpilibj.ADIS16470_IMU;
 import frc.robot.Constants.DriveConstants;
-import frc.robot.subsystems.GyroSubsystem;
 import frc.utils.SwerveUtils;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SerialPort;
+import frc.robot.subsystems.GyroSubsystem;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -46,9 +46,16 @@ public class DriveSubsystem extends SubsystemBase {
       DriveConstants.kBackRightChassisAngularOffset);
 
   // The gyro sensor
+<<<<<<< HEAD
    //private final ADIS16470_IMU m_gyro = new ADIS16470_IMU();
   private final GyroSubsystem ahrsGyro = GyroSubsystem.getInstance();
 
+=======
+  //AHRS is utilized in navx
+  //private final ADIS16470_IMU m_gyro = new ADIS16470_IMU();
+  //private final AHRS ahrsGyro = new AHRS(SerialPort.Port.kUSB);
+  private final GyroSubsystem ahrsGyro = new GyroSubsystem();
+>>>>>>> bbd6b7b38b04e1c5ccba5ab415ff21dfdde89edf
   // Slew rate filter variables for controlling lateral acceleration
   private double m_currentRotation = 0.0;
   private double m_currentTranslationDir = 0.0;
@@ -83,7 +90,11 @@ public class DriveSubsystem extends SubsystemBase {
             m_rearLeft.getPosition(),
             m_rearRight.getPosition()
         });
+<<<<<<< HEAD
     System.out.println(ahrsGyro.getPitch()+"..."+ahrsGyro.getYaw()+"..."+ ahrsGyro.getRoll());
+=======
+    
+>>>>>>> bbd6b7b38b04e1c5ccba5ab415ff21dfdde89edf
     SmartDashboard.putNumber("Gyro Pitch", ahrsGyro.getPitch());
     SmartDashboard.putNumber("Gyro Yaw", ahrsGyro.getYaw());
   }
