@@ -3,7 +3,10 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
-
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Date;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
@@ -13,6 +16,8 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
+import edu.wpi.first.math.trajectory.TrajectoryUtil;
+import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.PS4Controller;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.PS4Controller.Button;
@@ -81,6 +86,10 @@ public class RobotContainer {
             m_robotDrive));
   }
 
+  public Command getSwerveAutonCommand(Date autoStartTime) {
+    return m_robotDrive.getSwerveAutonomousCommand1(autoStartTime);
+  }
+
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *
@@ -95,7 +104,7 @@ public class RobotContainer {
         .setKinematics(DriveConstants.kDriveKinematics);
 
     // An example trajectory to follow. All units in meters.
-    Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
+ /*    Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
         // Start at the origin facing the +X direction
         new Pose2d(0, 0, new Rotation2d(0)),
         // Pass through these two interior waypoints, making an 's' curve path
@@ -103,6 +112,36 @@ public class RobotContainer {
         // End 3 meters straight ahead of where we started, facing forward
         new Pose2d(3, 0, new Rotation2d(0)),
         config);
+*/
+
+
+  // String currentPath="";
+  // try {
+  //   currentPath = new java.io.File(".").getCanonicalPath();
+  // } catch (IOException e) {
+  //   e.printStackTrace();
+  // }
+  // System.out.println(currentPath);
+
+    String trajectoryJSON = "pathplanner/generatedJSON/test1.wpilib.json";
+    System.out.println("Auton+++++++++++++++++++++++++++++++");
+    Trajectory exampleTrajectory;
+    try{
+      Path path = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
+      exampleTrajectory = TrajectoryUtil.fromPathweaverJson(path);
+      System.out.println("Works!!!");
+
+    } catch (Exception e) {
+      System.out.println("Exception");
+      exampleTrajectory = TrajectoryGenerator.generateTrajectory(
+        // Start at the origin facing the +X direction
+        new Pose2d(0, 0, new Rotation2d(0)),
+        // Pass through these two interior waypoints, making an 's' curve path
+        List.of(new Translation2d(1, 1), new Translation2d(2, -1)),
+        // End 3 meters straight ahead of where we started, facing forward
+        new Pose2d(3, 0, new Rotation2d(0)),
+        config);
+    }   
 
     var thetaController = new ProfiledPIDController(
         AutoConstants.kPThetaController, 0, 0, AutoConstants.kThetaControllerConstraints);
@@ -126,4 +165,31 @@ public class RobotContainer {
     // Run path following command, then stop at the end.
     return swerveControllerCommand.andThen(() -> m_robotDrive.drive(0, 0, 0, false, false));
   }
+
+  // private Trajectory loadTrajectoryFile(String fileName)
+  // {
+  //     Trajectory  trajectory;
+  //     Path        trajectoryFilePath;
+  //     Double start;
+
+  //     try 
+  //     {
+  //       trajectoryFilePath = Paths.get(fileName);
+        
+  //       start = Timer.getFPGATimestamp();
+  //       SmartDashboard.putNumber("starttime", start);
+        
+  //       trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryFilePath);
+  //     } catch (IOException ex) {
+  //       throw new RuntimeException("Unable to load trajectory: " + ex.toString());
+  //     }
+
+  //     var end = Timer.getFPGATimestamp();
+  //     SmartDashboard.putNumber("endtime", end);
+  //     SmartDashboard.putNumber("elapsedtime", end - start);
+
+  //     return trajectory;
+  // }
+
+   
 }

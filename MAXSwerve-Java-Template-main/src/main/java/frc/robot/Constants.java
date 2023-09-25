@@ -26,13 +26,8 @@ import frc.robot.subsystems.GyroSubsystem;
 public final class Constants {
   public static final class DriveConstants {
 
-<<<<<<< HEAD
     // gryo
     //public static final GyroSubsystem gyro = new GyroSubsystem();
-=======
-        // gryo
-        public static final GyroSubsystem gyro = new GyroSubsystem();
->>>>>>> bbd6b7b38b04e1c5ccba5ab415ff21dfdde89edf
 
     // Driving Parameters - Note that these are not the maximum capable speeds of
     // the robot, rather the allowed maximum speeds
@@ -55,18 +50,11 @@ public final class Constants {
         new Translation2d(-kWheelBase / 2, -kTrackWidth / 2));
 
     // Angular offsets of the modules relative to the chassis in radians
-<<<<<<< HEAD
     public static final double kFrontLeftChassisAngularOffset = -Math.PI / 2; // - gyro.getYaw() * (180/Math.PI);
     public static final double kFrontRightChassisAngularOffset =  0;//-gyro.getYaw() * (180/Math.PI);
     public static final double kBackLeftChassisAngularOffset = -Math.PI;//- gyro.getYaw() * (180/Math.PI);
     public static final double kBackRightChassisAngularOffset = Math.PI / 2;//- gyro.getYaw() * (180/Math.PI);
 
-=======
-   public static final double kFrontLeftChassisAngularOffset = -Math.PI / 2 - gyro.getYaw() * (180/Math.PI);
-    public static final double kFrontRightChassisAngularOffset = -gyro.getYaw() * (180/Math.PI);
-    public static final double kBackLeftChassisAngularOffset = -Math.PI - gyro.getYaw() * (180/Math.PI);
-    public static final double kBackRightChassisAngularOffset = Math.PI / 2 - gyro.getYaw() * (180/Math.PI);
->>>>>>> bbd6b7b38b04e1c5ccba5ab415ff21dfdde89edf
     // SPARK MAX CAN IDs
     public static final int kFrontLeftDrivingCanId = 2;
     public static final int kRearLeftDrivingCanId = 8;
@@ -138,8 +126,8 @@ public final class Constants {
   }
 
   public static final class AutoConstants {
-    public static final double kMaxSpeedMetersPerSecond = 3;
-    public static final double kMaxAccelerationMetersPerSecondSquared = 3;
+    public static final double kMaxSpeedMetersPerSecond = .5;
+    public static final double kMaxAccelerationMetersPerSecondSquared = .5;
     public static final double kMaxAngularSpeedRadiansPerSecond = Math.PI;
     public static final double kMaxAngularSpeedRadiansPerSecondSquared = Math.PI;
 

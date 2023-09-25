@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.subsystems;
+import java.util.Date;
 
 import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.math.geometry.Pose2d;
@@ -16,12 +17,14 @@ import edu.wpi.first.util.WPIUtilJNI;
 //import edu.wpi.first.wpilibj.ADIS16470_IMU;
 import frc.robot.Constants.DriveConstants;
 import frc.utils.SwerveUtils;
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SerialPort;
 import frc.robot.subsystems.GyroSubsystem;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class DriveSubsystem extends SubsystemBase {
   // Create MAXSwerveModules
@@ -46,16 +49,9 @@ public class DriveSubsystem extends SubsystemBase {
       DriveConstants.kBackRightChassisAngularOffset);
 
   // The gyro sensor
-<<<<<<< HEAD
    //private final ADIS16470_IMU m_gyro = new ADIS16470_IMU();
   private final GyroSubsystem ahrsGyro = GyroSubsystem.getInstance();
 
-=======
-  //AHRS is utilized in navx
-  //private final ADIS16470_IMU m_gyro = new ADIS16470_IMU();
-  //private final AHRS ahrsGyro = new AHRS(SerialPort.Port.kUSB);
-  private final GyroSubsystem ahrsGyro = new GyroSubsystem();
->>>>>>> bbd6b7b38b04e1c5ccba5ab415ff21dfdde89edf
   // Slew rate filter variables for controlling lateral acceleration
   private double m_currentRotation = 0.0;
   private double m_currentTranslationDir = 0.0;
@@ -90,11 +86,7 @@ public class DriveSubsystem extends SubsystemBase {
             m_rearLeft.getPosition(),
             m_rearRight.getPosition()
         });
-<<<<<<< HEAD
     System.out.println(ahrsGyro.getPitch()+"..."+ahrsGyro.getYaw()+"..."+ ahrsGyro.getRoll());
-=======
-    
->>>>>>> bbd6b7b38b04e1c5ccba5ab415ff21dfdde89edf
     SmartDashboard.putNumber("Gyro Pitch", ahrsGyro.getPitch());
     SmartDashboard.putNumber("Gyro Yaw", ahrsGyro.getYaw());
   }
@@ -260,5 +252,15 @@ public class DriveSubsystem extends SubsystemBase {
    */
   public double getTurnRate() {
     return ahrsGyro.getRate() * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
+  }
+  
+  public CommandBase getSwerveAutonomousCommand1(Date autonStartTime) {
+    long timeInSec = 2; 
+    return run(() -> this.drive(0.2,0.2,0,true, true))
+        // End command when we've traveled the specified amount of time
+        .until(
+            () ->  (new Date().getTime()-autonStartTime.getTime())/1000 >= timeInSec)
+        // Stop the drive when the command ends
+        .finallyDo(interrupted -> this.drive(0,0,0,true, true));
   }
 }
