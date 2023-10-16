@@ -123,7 +123,7 @@ public class RobotContainer {
   // }
   // System.out.println(currentPath);
 
-    String trajectoryJSON = "pathplanner/generatedJSON/test1.wpilib.json";
+    String trajectoryJSON = "pathplanner/generatedJSON/test.wpilib.json";
     System.out.println("Auton+++++++++++++++++++++++++++++++");
     Trajectory exampleTrajectory;
     try{
@@ -141,7 +141,10 @@ public class RobotContainer {
         // End 3 meters straight ahead of where we started, facing forward
         new Pose2d(3, 0, new Rotation2d(0)),
         config);
-    }   
+    }
+    
+    // exampleTrajectory = TrajectoryGenerator.generateTrajectory(
+    //   new Pose2d(0, 0, new Rotation2d(0)), List.of(), new Pose2d(.5, 0, new Rotation2d(0)), config);
 
     var thetaController = new ProfiledPIDController(
         AutoConstants.kPThetaController, 0, 0, AutoConstants.kThetaControllerConstraints);
