@@ -143,8 +143,8 @@ public class RobotContainer {
         config);
     }
     
-    // exampleTrajectory = TrajectoryGenerator.generateTrajectory(
-    //   new Pose2d(0, 0, new Rotation2d(0)), List.of(), new Pose2d(.5, 0, new Rotation2d(0)), config);
+    exampleTrajectory = TrajectoryGenerator.generateTrajectory(
+      new Pose2d(0, 0, new Rotation2d(0)), List.of(new Translation2d(.5, new Rotation2d(90))), new Pose2d(0, 0, new Rotation2d(0)), config);
 
     var thetaController = new ProfiledPIDController(
         AutoConstants.kPThetaController, 0, 0, AutoConstants.kThetaControllerConstraints);
